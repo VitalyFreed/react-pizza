@@ -1,0 +1,55 @@
+//@mixin flexRow {
+//  display: flex;
+//  flex-direction: row;
+//}
+//
+//@mixin flexColumn {
+//  display: flex;
+//  flex-direction: column;
+//}
+//
+//@font-face {
+//  font-family: "Proxima Nova";
+//  src: url('assets/fonts/ProximaNova/ProximaNova-Black.ttf');
+//  font-style: normal;
+//  font-weight: normal;
+//}
+//
+//$main-font: Proxima Nova;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, sans-serif, Tahoma, Arial;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  border: 40px solid #bbbd3a;
+}
+
+.container {
+  max-width: 100%;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+  padding: 35px 80px 40px;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
