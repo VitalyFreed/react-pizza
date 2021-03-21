@@ -1,0 +1,18 @@
+.stars {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.star {
+  g {
+    transition: all 0.1s ease-out;
+    fill: #f5ee11;
+  }
+}
+
+.count {
+  font-size: 1.1em;
+  margin-left: 5px;
+}

@@ -92,6 +92,8 @@ $main-font: ProximaNova;
   }
 
   .sort-link {
-
+    svg {
+      transition: all ease-out 0.2s;
+    }
   }
 }

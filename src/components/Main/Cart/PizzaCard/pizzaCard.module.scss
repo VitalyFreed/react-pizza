@@ -1,0 +1,150 @@
+@mixin flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url('../../../../assets/fonts/ProximaNova/ProximaNova-Regular.ttf');
+  src: url('../../../../assets/fonts/ProximaNova/ProximaNova-Bold.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+$main-font: ProximaNova;
+
+.pizza-card {
+  @include flexColumn;
+  width: 25%;
+  padding: 20px;
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.3s ease-out;
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(#000, .5);
+    border-radius: 5px;
+  }
+}
+
+.pizza-info {
+  @include flexColumn;
+  align-items: center;
+
+  .pizza-img {
+
+  }
+
+  .pizza-name {
+
+  }
+}
+
+.pizza-parameters {
+  width: 100%;
+  @include flexColumn;
+  background: #F3F3F3;
+  border-radius: 10px;
+  padding: 0 0 5px 5px;
+
+  .pizza-types {
+    @include flexRow;
+  }
+
+  .pizza-sizes {
+    @include flexRow;
+  }
+}
+
+.pizza-type-btn {
+  cursor: pointer;
+  flex-grow: 1;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 5px;
+  font-family: $main-font;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.015em;
+  color: #2C2C2C;
+  padding: 6px 15px;
+  margin-right: 5px;
+  margin-top: 5px;
+
+  &:not(.pizza-disabled):hover {
+    background: #fff;
+  }
+}
+
+.pizza-disabled {
+  color: rgba(#2C2C2C, 0.3);
+}
+
+.summary {
+  @include flexRow;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+
+  .price {
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 27px;
+    letter-spacing: 0.015em;
+    color: #000000;
+  }
+
+  .amount {
+    background: #FFFFFF;
+    border: 1px solid #EB5A1E;
+    box-sizing: border-box;
+    border-radius: 30px;
+    cursor: pointer;
+    padding: 10px 30px;
+
+    font-family: $main-font;
+    font-size: 16px;
+    line-height: 19px;
+    color: #EB5A1E;
+
+    position: relative;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      transition: opacity 0.2s linear;
+      position: absolute;
+      left: 20px;
+      opacity: 0;
+    }
+
+    span {
+      transition: transform 0.3s ease-out;
+    }
+
+    &:hover {
+      background: #EB5A1E;
+      color: #fff;
+
+      span {
+        display: block;
+        position: relative;
+        transform: translateX(10px);
+      }
+
+      svg {
+        opacity: 1;
+      }
+
+      path {
+        fill: #fff;
+      }
+    }
+  }
+}

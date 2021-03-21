@@ -2,8 +2,24 @@ const express = require('express');
 const mysql = require('mysql2');
 const path = require('path');
 const fs = require('fs');
+const cookieParser = require('cookie-parser');
+
+const authRouter = require('./auth');
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Content-Type', 'application/json');
+    next();
+});
+app.use(cookieParser('secret-key'));
+app.use('/auth', authRouter);
 
 const connect_db = () => {
     return mysql.createConnection({
@@ -15,9 +31,6 @@ const connect_db = () => {
 }
 
 app.get('/', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', 'application/json');
-
     const connect = connect_db();
 
     let data = {pizzas: []};
@@ -85,6 +98,11 @@ app.get('/', (req, res) => {
         for (let i = 0; i < data.pizzas.length; i++) {
             data.pizzas[i].tastes = result[0].filter(item => item['pizza_id'] === data.pizzas[i].id);
         }
+
+        /********************** Добавляю текущую цену в объект **********************/
+        // for (let i = 0; i < data.pizzas.length; i++) {
+        //     data.pizzas[i].currentPrice = data.pizzas[i].sizes.find(item => item.size === data.pizzas[i]['default_size']).price;
+        // }
 
         res.send(data);
     })
