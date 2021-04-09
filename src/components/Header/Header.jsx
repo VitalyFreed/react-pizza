@@ -1,10 +1,35 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import styles from './header.module.scss';
 
 import logo from '../../assets/img/logo.png';
+import {useDispatch, useSelector} from "react-redux";
+
+import {getAuth, setAuth, getUser} from "../../reducers/userReducer";
 
 const Header = () => {
+    const isAuth = useSelector(getAuth);
+    const user = useSelector(getUser);
+    const dispatch = useDispatch();
+
+    const handleLogout = async e => {
+        e.preventDefault();
+        const response = await fetch('http://localhost:3001/auth/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({...user})
+        });
+        const data = await response.json();
+        if (data.success) {
+            dispatch(setAuth(data['is_auth']));
+        }
+    }
+
     return (
         <header className={styles.header}>
             <div className={styles.container}>
@@ -17,6 +42,10 @@ const Header = () => {
                         <span className={styles.subtitle}>самая вкусная пицца во вселенной</span>
                     </div>
                 </div>
+                {isAuth ? <div>
+                    <Link to='/pizzas/profile'>Профиль</Link>
+                    <a onClick={handleLogout} href='#'>Выйти</a>
+                </div>: <div><Link to='/auth/login'>Войти</Link><Link to='/auth/registration'>Зарегистрироваться</Link></div>}
                 <div className={styles.bucket}>
                     <span className={styles.sum}>0 &#8381;</span>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

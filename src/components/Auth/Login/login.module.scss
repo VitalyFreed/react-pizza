@@ -1,0 +1,112 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin inputText {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(#f7ffe8, 0.5);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  background: url('./nature.jpg') no-repeat;
+  background-size: auto;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: rgba(#3b69a7, 0.4);
+  @include flexCenter;
+}
+
+.login__form-container {
+  min-height: 500px;
+  padding: 50px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #f7ffe8;
+  background: rgba(#285ca8, 0.5);
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  .title {
+    @include inputText;
+    padding-bottom: 70px;
+  }
+}
+
+.login-form {
+  @include flexColumn;
+}
+
+.input {
+  @include inputText;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background: rgba(#81c4ff, 0.3);
+  margin-bottom: 20px;
+  padding: 10px 100px 10px 10px;
+  transition: all 0.2s ease-out;
+
+  &::placeholder {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    @include inputText;
+    font-size: 12px;
+  }
+
+  &:focus {
+    box-shadow: 0 0 10px rgba(#f7ffe8, 0.5);
+    &::placeholder {
+      transition: all 0.3s ease-out;
+      top: 50%;
+      transform: translate(20%, -50%);
+    }
+  }
+}
+
+.btns-block {
+  display: flex;
+  flex-direction: row;
+  margin-right: -10px;
+}
+
+.submit-btn {
+  flex-grow: 0;
+  padding: 15px 0px;
+  margin: 0 10px 0 auto;
+  width: 50%;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: #4c8bff;
+  transition: all 0.3s ease-out;
+  @include inputText;
+
+  &:hover {
+    background: rgba(#4c8bff, 0.5);
+  }
+}
+
+.submit-btn-register {
+  text-decoration: none;
+  text-align: center;
+  @include inputText;
+  font-size: 14px;
+}
+

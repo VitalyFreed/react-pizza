@@ -70,9 +70,6 @@ const pizzaReducer = createSlice({
         },
         setCurrentFilter: (state, action) => {
             state.pizzasData.currentFilter = action.payload;
-        },
-        setAuth: (state, action) => {
-            state.user.isAuth = action.payload;
         }
     }
 });
@@ -88,8 +85,7 @@ export const {
     changeDefaultSize,
     filterPizzaByAlphabet,
     filterReverse,
-    setCurrentFilter,
-    setAuth
+    setCurrentFilter
 } = pizzaReducer.actions;
 
 export const getPizzas = state => state.pizzaReducer.pizzasData.pizzas;
@@ -107,5 +103,3 @@ export const getPizzasFilterByTaste = state => {
 };
 
 export const getCurrentFilter = state => state.pizzaReducer.pizzasData.currentFilter;
-
-export const getAuth = state => state.pizzaReducer.user.isAuth;

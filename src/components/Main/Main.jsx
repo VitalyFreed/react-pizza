@@ -16,6 +16,8 @@ import {
     getCurrentFilter,
 } from "../../reducers/pizzaReducer";
 import SortSelectContainer from "../SortSelect/SortSelectContainer";
+import Profile from "../Profile/Profile";
+import Header from "../Header/Header";
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -45,7 +47,7 @@ const Main = () => {
 
     const [filterNormal, setFilterNormal] = useState(true);
 
-    const tastesEng = useRef(['all', 'meat', 'vegan', 'grill', 'spicy', 'closed']);
+    const tastesEng = useRef(['', 'meat', 'vegan', 'grill', 'spicy', 'closed']);
 
     useEffect(() => {
         dispatch(fetch_pizzas());
@@ -53,13 +55,13 @@ const Main = () => {
 
     const handleChangeTaste = (id) => {
         dispatch(changeTaste({id}));
-    }
+    };
 
     const handleToggleSortByPrice = e => {
         e.preventDefault();
         setFilterNormal(filterNormal => !filterNormal)
         dispatch(filterReverse(currentFilter));
-    }
+    };
 
     return (
         <div className={styles.main}>
@@ -68,7 +70,7 @@ const Main = () => {
                     <div className={styles.categories}>
                         <div className={styles['categories-row']}>
                             {
-                                tastes.map((t, i) => <Link to={tastesEng.current[i]}>
+                                tastes.map((t, i) => <Link to={'/pizzas/' + tastesEng.current[i]}>
                                     <button
                                         key={t.id}
                                         className={styles.category + (tastesActive === t.id ? ' ' + styles.active : '')}
@@ -99,11 +101,13 @@ const Main = () => {
                     </div>
                     <Switch>
                         {
-                            tastes.map((taste, i) => <Route exact path={'/' + tastesEng.current[i]}>
+                            tastes.map((taste, i) => <Route exact path={'/pizzas/' + tastesEng.current[i]}>
                                 <Cart key={taste.id} handleChangeTaste={() => handleChangeTaste(taste.id)}/>
                             </Route>)
                         }
-                        <Redirect to='/all'/>
+                        <Route exact path='/pizzas/profile'>
+                            <Profile/>
+                        </Route>
                     </Switch>
                 </React.Fragment>
             }

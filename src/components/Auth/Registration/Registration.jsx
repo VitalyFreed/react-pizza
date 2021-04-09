@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
+import {useHistory} from 'react-router-dom';
 
 import styles from './registration.module.scss';
 
-import {setAuth} from "../../../reducers/pizzaReducer";
+import {setUser} from "../../../reducers/userReducer";
 
 const Registration = () => {
     const dispatch = useDispatch();
+
+    const history = useHistory();
 
     const [firstName, changeFirstName] = useState('');
     const [lastName, changeLastName] = useState('');
@@ -44,8 +47,10 @@ const Registration = () => {
             })
         });
         const data = await response.json();
+        console.log(data)
         if (data.success) {
-            dispatch(setAuth(data.success));
+            dispatch(setUser(data));
+            history.push('/auth/login');
         }
     };
 
