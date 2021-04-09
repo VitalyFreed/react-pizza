@@ -105,9 +105,6 @@ const Main = () => {
                                 <Cart key={taste.id} handleChangeTaste={() => handleChangeTaste(taste.id)}/>
                             </Route>)
                         }
-                        <Route exact path='/pizzas/profile'>
-                            <Profile/>
-                        </Route>
                     </Switch>
                 </React.Fragment>
             }

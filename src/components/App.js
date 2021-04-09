@@ -8,6 +8,7 @@ import Login from "./Auth/Login/Login";
 
 import {getAuth} from "../reducers/userReducer";
 import {useSelector} from "react-redux";
+import Profile from "./Profile/Profile";
 
 const App = () => {
     const isAuth = useSelector(getAuth);
@@ -29,6 +30,11 @@ const App = () => {
                 <Route exact path='/auth/login'>
                     <Login/>
                 </Route>
+                {
+                    isAuth ? <Route exact path='/profile'>
+                        <Profile/>
+                    </Route> : null
+                }
             </Switch>
         </React.Fragment>
     );

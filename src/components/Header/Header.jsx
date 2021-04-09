@@ -35,7 +35,7 @@ const Header = () => {
             <div className={styles.container}>
                 <div className={styles.info}>
                     <div className={styles.logo}>
-                        <a href='#' className={styles['logo-link']}><img src={logo} alt="logo"/></a>
+                        <Link to='/pizzas' className={styles['logo-link']}><img src={logo} alt="logo"/></Link>
                     </div>
                     <div className={styles['title-block']}>
                         <span className={styles.title}>REACT PIZZA</span>
@@ -43,7 +43,7 @@ const Header = () => {
                     </div>
                 </div>
                 {isAuth ? <div>
-                    <Link to='/pizzas/profile'>Профиль</Link>
+                    <Link to='/profile'>Профиль</Link>
                     <a onClick={handleLogout} href='#'>Выйти</a>
                 </div>: <div><Link to='/auth/login'>Войти</Link><Link to='/auth/registration'>Зарегистрироваться</Link></div>}
                 <div className={styles.bucket}>

@@ -6,7 +6,7 @@ import styles from './profile.module.scss';
 const Profile = () => {
     return (
         <div>
-            <Link to='/'>Пиццы</Link>
+            <Link to='/pizzas'>Пиццы</Link>
         </div>
     );
 };
